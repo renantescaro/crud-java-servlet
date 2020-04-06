@@ -16,14 +16,14 @@ public class Inicial extends HttpServlet{
 		
 		String nome = request.getParameter("nome");
 		
-		if(nome == null){nome = "";}
+		if(nome == null){
+			nome = "";
+		}
 		
 		html.println("<html>");
 		html.println("<body>");
 		html.println("<p>Bem Vindo ao Servlet "+nome+"</p>");
 		html.println("</body>");
 		html.println("</html>");
-		
-		
 	}
 }
