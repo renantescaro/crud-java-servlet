@@ -14,9 +14,13 @@ public class Inicial extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse reponses) throws IOException{
 		PrintWriter html = reponses.getWriter();
 		
+		String nome = request.getParameter("nome");
+		
+		if(nome == null){nome = "";}
+		
 		html.println("<html>");
 		html.println("<body>");
-		html.println("<p>Bem Vindo ao Servlet</p>");
+		html.println("<p>Bem Vindo ao Servlet "+nome+"</p>");
 		html.println("</body>");
 		html.println("</html>");
 		
