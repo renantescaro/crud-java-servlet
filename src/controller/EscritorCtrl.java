@@ -89,9 +89,9 @@ public class EscritorCtrl extends HttpServlet{
 							html.println("<a class='btn btn-warning' href='?acao&editar="+escritor.getId()+"'>");
 								html.println("Editar");
 							html.println("</a>");
-							html.println("<a class='btn btn-danger' href='?acao&excluir="+escritor.getId()+"'>");
+							html.println("<button class='btn btn-danger' onclick='excluir("+escritor.getId()+")'>");
 								html.println("Excluir");
-							html.println("</a>");
+							html.println("</button>");
 						html.println("</td>");
 					html.println("</tr>");
 				});
@@ -104,6 +104,13 @@ public class EscritorCtrl extends HttpServlet{
 			html.println("<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>");
 			html.println("<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>");
 			html.println("<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>");
+			html.println("<script>");
+				html.println("function excluir(idExcluir){");
+					html.println("if(confirm('Deseja excluir registro?')){");
+						html.println("window.location.href='?acao&excluir='+idExcluir");
+					html.println("}");
+				html.println("}");
+			html.println("</script>");
 			html.println("</body>");
 			html.println("</html>");
 			
