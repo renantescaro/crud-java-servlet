@@ -74,7 +74,7 @@ public class PessoaDao {
 		Conexao conexao = new Conexao();
 		
 		String sql = "INSERT INTO pessoa(nome, cpf, rg, data_nascimento, observacao) "+
-				"VALUES(?,?,?,?,?)";
+					 "VALUES(?,?,?,?,?);";
 		
 		conexao.conectar();
 		PreparedStatement statement = (PreparedStatement) conexao.cnx.prepareStatement(sql);
@@ -84,9 +84,33 @@ public class PessoaDao {
 		statement.setString(3, pessoa.getRg());
 		statement.setDate(4, (Date) pessoa.getDataNascimento());
 		statement.setString(5, pessoa.getObservacao());
+
 		statement.execute();
+
+		int idPessoa = this.pegarUltimoId(conexao);
+		conexao.fecharConexao();
 		
-		return pessoa;
+		if(idPessoa > 0){
+			pessoa.setId(idPessoa);
+			return pessoa;
+		}
+		return null;
+	}
+	
+	private int pegarUltimoId(Conexao conexao) throws SQLException {
+		int id = 0;
+		String sql = "select LAST_INSERT_ID() as id;";
+
+		PreparedStatement statement = (PreparedStatement) conexao.cnx.prepareStatement(sql);
+		
+		ResultSet rs = statement.executeQuery();
+		
+		if(rs != null){		
+			rs.next();
+			
+			id = rs.getInt("id");
+		}
+		return id;
 	}
 	
 	public boolean deletarPorId(int id) throws SQLException{

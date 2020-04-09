@@ -73,11 +73,11 @@ public class EscritorDao{
 		String sql = "INSERT INTO escritor(pessoa_id) "+
 					 "VALUES(?)";
 		
+		
 		conexao.conectar();
 		PreparedStatement statement = (PreparedStatement) conexao.cnx.prepareStatement(sql);
 		
 		statement.setInt(1, escritor.getPessoa().getId());
-		
 		return statement.execute();
 	}
 	
@@ -85,7 +85,7 @@ public class EscritorDao{
 		
 		Conexao conexao = new Conexao();
 		
-		String sql = "DELETE FROM escritor WHERE id="+id;
+		String sql = "DELETE FROM escritor WHERE id=?";
 
 		conexao.conectar();
 		PreparedStatement statement = (PreparedStatement) conexao.cnx.prepareStatement(sql);
